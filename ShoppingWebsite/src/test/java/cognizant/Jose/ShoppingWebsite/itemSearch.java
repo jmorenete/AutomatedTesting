@@ -25,7 +25,6 @@ public class itemSearch {
 		 	try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			textBox.submit();
@@ -34,9 +33,7 @@ public class itemSearch {
 	
 	@Test
 	public void itemSearch() {
-		
-		//driver.get("http://automationpractice.com/index.php?controller=search&orderby=position&orderway=desc&search_query=dress&submit_search=");
-		
+				
 		WebElement dress = driver.findElement(By.xpath("//*[@id=\"center_column\"]/h1/span"));
 		boolean present;
 		try {
@@ -58,9 +55,8 @@ public class itemSearch {
 	@After
 	public void teardown() {
 		try {
-			Thread.sleep(3000); //otherwise thread doeesnt sleep even if window appears to be closed.
+			Thread.sleep(3000); 
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		driver.quit();
