@@ -31,12 +31,14 @@ public class itemSearch {
 		WebElement textBox = driver.findElement(By.xpath("//*[@id=\"search_query_top\"]"));
 		String searchItem = "dress";
 		textBox.sendKeys(searchItem);
+		
 		 	try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			textBox.submit();
+			
 		List<WebElement> dress = driver.findElement(By.id("center_column")).findElements(By.tagName("a"));
 		
 		boolean dressExists = false;
@@ -58,8 +60,6 @@ public class itemSearch {
 		catch (NoSuchElementException e) {
 			   present = false;
 			}
-		System.out.println(present);
-		System.out.println(dressExists);
 		
 		boolean success = present & !dressExists;
 		
