@@ -2,6 +2,8 @@ package cognizant.Jose.ShoppingWebsite;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,24 +19,37 @@ public class itemSearch {
 	public void setup() {
 		System.setProperty("webdriver.chrome.driver", "/Users/jmmore/Desktop/chromedriver");
 		 driver = new ChromeDriver();
-		 driver.get("http://automationpractice.com/index.php");
+		 
+	
+	}
+	
+	@Test
+	public void itemSearch() {
 		
-		 WebElement textBox = driver.findElement(By.xpath("//*[@id=\"search_query_top\"]"));
-			
-		 textBox.sendKeys("dress");
+		driver.get("http://automationpractice.com/index.php");
+		
+		WebElement textBox = driver.findElement(By.xpath("//*[@id=\"search_query_top\"]"));
+		String searchItem = "dress";
+		textBox.sendKeys(searchItem);
 		 	try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			textBox.submit();
-	
-	}
-	
-	@Test
-	public void itemSearch() {
-				
-		WebElement dress = driver.findElement(By.xpath("//*[@id=\"center_column\"]/h1/span"));
+		List<WebElement> dress = driver.findElement(By.id("center_column")).findElements(By.tagName("a"));
+		
+		boolean dressExists = false;
+		
+		for(int i=0;i<dress.size();i++) {
+			String value = dress.get(i).getAttribute("title");
+			if(value.toLowerCase().contains(searchItem)) {
+				dressExists = true;
+			}
+			else {
+				dressExists = false;
+			}
+		}
 		boolean present;
 		try {
 			   driver.findElement(By.xpath("//*[@id=\"center_column\"]/p"));
@@ -43,11 +58,13 @@ public class itemSearch {
 		catch (NoSuchElementException e) {
 			   present = false;
 			}
-		boolean dressExists = dress.getText().contains("DRESS");
-		boolean success = present | dressExists;
+		System.out.println(present);
+		System.out.println(dressExists);
+		
+		boolean success = present & !dressExists;
 		
 		
-		assertEquals("Dress not found",true,success);
+		assertEquals("Dress not found",false,success);
 		
 	}
 	
