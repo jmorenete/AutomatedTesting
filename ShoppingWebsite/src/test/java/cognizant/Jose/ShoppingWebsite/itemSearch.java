@@ -64,7 +64,7 @@ public class itemSearch {
 		boolean success = present & !dressExists;
 		
 		
-		assertEquals("Dress not found",false,success);
+		assertEquals("Item not found",false,success);
 		
 	}
 	
