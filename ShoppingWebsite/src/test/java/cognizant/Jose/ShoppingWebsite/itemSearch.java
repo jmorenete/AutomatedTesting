@@ -17,7 +17,6 @@ public class itemSearch {
 	public void setup() {
 		System.setProperty("webdriver.chrome.driver", "/Users/jmmore/Desktop/chromedriver");
 		 driver = new ChromeDriver();
-		 
 		 driver.get("http://automationpractice.com/index.php");
 		
 		 WebElement textBox = driver.findElement(By.xpath("//*[@id=\"search_query_top\"]"));
