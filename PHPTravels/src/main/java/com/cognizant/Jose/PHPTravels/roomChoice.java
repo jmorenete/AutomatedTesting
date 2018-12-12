@@ -1,4 +1,4 @@
-package cognizant.Jose.PHPTravels;
+package com.cognizant.Jose.PHPTravels;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package cognizant.Jose.PHPTravels;
+package com.cognizant.Jose.PHPTravels;
 
 //Purpose is to check whether we have correctly booked a hotel room in London for 3 nights and 3 people.
 
