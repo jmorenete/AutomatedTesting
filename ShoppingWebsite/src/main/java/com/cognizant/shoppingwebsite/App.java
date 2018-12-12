@@ -1,4 +1,4 @@
-package cognizant.Jose.ShoppingWebsite;
+package com.cognizant.shoppingwebsite;
 
 /**
  * Hello world!

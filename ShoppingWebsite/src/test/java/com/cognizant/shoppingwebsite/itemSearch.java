@@ -1,4 +1,4 @@
-package cognizant.Jose.ShoppingWebsite;
+package com.cognizant.shoppingwebsite;
 
 import static org.junit.Assert.assertEquals;
 

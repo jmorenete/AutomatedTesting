@@ -1,4 +1,4 @@
-package cognizant.Jose.ShoppingWebsite;
+package com.cognizant.shoppingwebsite;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
