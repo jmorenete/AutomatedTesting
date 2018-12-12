@@ -4,9 +4,11 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.After;
@@ -44,29 +46,41 @@ public class basicTesting {
 	}
 	
 	@Test
-	public void userLogin() {
+	public void userLogin() throws Exception {
 		FileInputStream file = null;
-		try {
-			file = new FileInputStream("/Users/jmmore/eclipse-workspace/theDemoSite/DemoSiteDDT.xlsx");
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		}
+		
+		file = new FileInputStream("/Users/jmmore/eclipse-workspace/theDemoSite/DemoSiteDDT.xlsx");
+		
 		XSSFWorkbook workbook = null;
-		try {
-			workbook = new XSSFWorkbook(file);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		
+		workbook = new XSSFWorkbook(file);
+		
 		XSSFSheet sheet = workbook.getSheetAt(0);
 		
-		for(int rowNum = 0 ; rowNum < sheet.getPhysicalNumberOfRows(); rowNum++) { // for i<num rows
-			for(int colNum=0;colNum < sheet.getRow(rowNum).getPhysicalNumberOfCells(); colNum++) {// for j<num columns
-				XSSFCell cell = sheet.getRow(rowNum).getCell(colNum);
-				String userCell = cell.getStringCellValue();
-				System.out.println(userCell);
-			}
+//		for(int rowNum = 0 ; rowNum < sheet.getPhysicalNumberOfRows(); rowNum++) { // for i<num rows
+//			for(int colNum=0;colNum < sheet.getRow(rowNum).getPhysicalNumberOfCells(); colNum++) {// for j<num columns
+//				XSSFCell cell = sheet.getRow(rowNum).getCell(colNum);
+//				String userCell = cell.getStringCellValue();
+//			}
+//		}
+		
+		//writing:
+		XSSFRow row = sheet.getRow(1);
+		XSSFCell cell = row.getCell(1);
+		
+		if(cell == null) {
+			cell = row.createCell(1);
 		}
+		cell.setCellValue("hello");
+		file.close();
+		
+		
+		
+		FileOutputStream fileOut = new FileOutputStream("/Users/jmmore/eclipse-workspace/theDemoSite/DemoSiteDDT.xlsx");
+		
+		workbook.write(fileOut);
+		fileOut.flush();
+		fileOut.close();
 		
 		
 		driver.get("http://thedemosite.co.uk/login.php");
@@ -76,8 +90,15 @@ public class basicTesting {
 		WebElement passLog = driver.findElement(By.xpath("/html/body/table/tbody/tr/td[1]/form/div/center/table/tbody/tr/td[1]/table/tbody/tr[2]/td[2]/p/input"));
 		WebElement login = driver.findElement(By.xpath("/html/body/table/tbody/tr/td[1]/form/div/center/table/tbody/tr/td[1]/table/tbody/tr[3]/td[2]/p/input"));
 		
-		userLog.sendKeys("jjjj");
-		passLog.sendKeys("zzzz");
+		for(int rowNum = 0 ; rowNum < sheet.getPhysicalNumberOfRows(); rowNum++) { // for i<num rows
+			for(int colNum=0;colNum < sheet.getRow(rowNum).getPhysicalNumberOfCells(); colNum++) {// for j<num columns
+				XSSFCell cellUsername = sheet.getRow(rowNum).getCell(colNum);
+				String userCell = cell.getStringCellValue();
+				userLog.sendKeys(userCell);
+				passLog.sendKeys("zzzz");
+			}
+		}
+		
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
