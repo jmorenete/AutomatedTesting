@@ -1,4 +1,4 @@
-package cognizant.Jose.theDemoSite;
+package com.cognizant.thedemosite;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,7 +13,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class basicTesting {
 	WebDriver driver;
-	WebDriver testD;
 	@Before
 	public void setup() {
 		System.setProperty("webdriver.chrome.driver", "/Users/jmmore/Desktop/chromedriver");

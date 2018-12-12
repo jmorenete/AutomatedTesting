@@ -1,4 +1,4 @@
-package cognizant.Jose.theDemoSite;
+package com.cognizant.thedemosite;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
