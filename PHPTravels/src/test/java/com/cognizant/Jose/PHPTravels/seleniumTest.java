@@ -83,15 +83,18 @@ public class seleniumTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 action.click(firstName).sendKeys("a").sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
+		 action.click(country).sendKeys("a").sendKeys(Keys.ENTER).perform();
 		 action.click(confirm).perform();
-
-
-
-
-
-
-		 //assertEquals("Dress not found",true,success);
+		 
+		 
+		 try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		 System.out.println(driver.getCurrentUrl());
+		 boolean invoice = driver.getCurrentUrl().contains("invoice");
+		 assertEquals("Invoice URL not reached",true,invoice);
 		 
 		
 	}
@@ -100,7 +103,7 @@ public class seleniumTest {
 	@After
 	public void teardown() {
 		try {
-			Thread.sleep(10000); //otherwise thread doesn't sleep even if window appears to be closed.
+			Thread.sleep(9000); //otherwise thread doesn't sleep even if window appears to be closed.
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
