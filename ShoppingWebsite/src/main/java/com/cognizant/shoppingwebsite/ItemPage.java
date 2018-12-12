@@ -21,7 +21,7 @@ public class ItemPage {
 		for(WebElement item: itemList) {
 			String value = item.getText();
 			try {
-				if(value.toLowerCase().contains(searchterm)) {
+				if(value.contains(searchterm)) {
 					itemExists = true;
 					break;
 				}
