@@ -39,12 +39,13 @@ public class itemSearch {
 			}
 			textBox.submit();
 			
-		List<WebElement> dress = driver.findElement(By.id("center_column")).findElements(By.tagName("a"));
+		List<WebElement> dress = driver.findElement(By.id("center_column")).findElements(By.tagName("h5"));
 		
 		boolean dressExists = false;
 		
 		for(int i=0;i<dress.size();i++) {
-			String value = dress.get(i).getAttribute("title");
+			String value = dress.get(i).getText();
+			System.out.println(value);
 			if(value.toLowerCase().contains(searchItem)) {
 				dressExists = true;
 			}
@@ -72,7 +73,7 @@ public class itemSearch {
 	@After
 	public void teardown() {
 		try {
-			Thread.sleep(3000); 
+			Thread.sleep(20000); 
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
