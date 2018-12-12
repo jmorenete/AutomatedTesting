@@ -2,6 +2,13 @@ package com.cognizant.thedemosite;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,8 +45,30 @@ public class basicTesting {
 	
 	@Test
 	public void userLogin() {
+		FileInputStream file = null;
+		try {
+			file = new FileInputStream("/Users/jmmore/eclipse-workspace/theDemoSite/DemoSiteDDT.xlsx");
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		XSSFWorkbook workbook = null;
+		try {
+			workbook = new XSSFWorkbook(file);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		XSSFSheet sheet = workbook.getSheetAt(0);
 		
-		driver.manage().window().maximize();
+		for(int rowNum = 0 ; rowNum < sheet.getPhysicalNumberOfRows(); rowNum++) { // for i<num rows
+			for(int colNum=0;colNum < sheet.getRow(rowNum).getPhysicalNumberOfCells(); colNum++) {// for j<num columns
+				XSSFCell cell = sheet.getRow(rowNum).getCell(colNum);
+				String userCell = cell.getStringCellValue();
+				System.out.println(userCell);
+			}
+		}
+		
+		
 		driver.get("http://thedemosite.co.uk/login.php");
 		
 
