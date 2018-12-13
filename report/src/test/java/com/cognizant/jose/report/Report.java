@@ -58,8 +58,9 @@ public class Report {
 			e.printStackTrace();
 		}
 		element.submit();
+		test.log(LogStatus.INFO, "Selenium is submitted");
 		try {
-			Thread.sleep(100);
+			Thread.sleep(1000);
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}
