@@ -51,8 +51,9 @@ public class ItemSearchTest {
 		File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		System.out.println(srcFile.getAbsolutePath());
 				
-		Utils.copy(srcFile.getAbsolutePath(), "/Users/jmmore/Desktop/screen.png");
+		//Utils.copy(srcFile.getAbsolutePath(), "/Users/jmmore/Desktop/screen.png");
 		
+		Utils.copy2(srcFile, "/Users/jmmore/Desktop/screen.png");
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {

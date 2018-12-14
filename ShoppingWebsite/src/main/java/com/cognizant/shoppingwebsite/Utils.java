@@ -1,5 +1,6 @@
 package com.cognizant.shoppingwebsite;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -24,8 +25,8 @@ public class Utils {
 		fos.close();
 	}
 	
-	public static void copy2(String inFile,String outFile) {
-		FileUtils.copyFile(inFile, outFile);
+	public static void copy2(File inFile,String outFile) throws IOException {
+		FileUtils.copyFile(inFile, new File(outFile));
 		
 		
 	}
