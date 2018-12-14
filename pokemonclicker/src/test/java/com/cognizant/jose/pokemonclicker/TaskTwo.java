@@ -32,7 +32,7 @@ public class TaskTwo {
 		
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		//WebElement enemyWait = driver.findElement(By.id("enemy"));
-		
+
 //		String[] comp = mainPage.counterText().split(" ");
 //		String[] semiCount = comp[comp.length-1].split(" ");
 //		semiCount = semiCount[semiCount.length-1].split("/");
@@ -43,14 +43,11 @@ public class TaskTwo {
 //		
 //		String secondCount = semiCount[semiCount.length-1];
 
-//		System.out.println(firstN);
-		//System.out.println(secondCount);
-		
 		while(!mainPage.counterText().contains("10/10")) {	
 			System.out.println(mainPage.counterText());
 			try {
-				WebElement element = driver.findElement(By.id("enemy"));
-				element.click();
+				//WebElement element = driver.findElement(By.id("enemy"));
+				mainPage.enemy.click();
 			} catch (Exception e) {
 				
 			}
