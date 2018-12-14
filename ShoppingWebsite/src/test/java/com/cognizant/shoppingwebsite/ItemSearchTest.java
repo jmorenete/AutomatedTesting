@@ -1,11 +1,17 @@
 package com.cognizant.shoppingwebsite;
 
 import static org.junit.Assert.fail;
+
+import java.io.File;
+import java.io.IOException;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -32,7 +38,7 @@ public class ItemSearchTest {
 	}
 	
 	@Test
-	public void itemPresent() {
+	public void itemPresent() throws IOException {
 		test = reports.startTest("Check whether products of searched item are returned");
 		
 		driver.get("http://automationpractice.com/index.php");
@@ -41,6 +47,11 @@ public class ItemSearchTest {
 	
 		mainPage.search(Consts.ITEMNAME);
 		test.log(LogStatus.INFO, "Item: "+ Consts.ITEMNAME + " searched");
+		
+		File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		System.out.println(srcFile.getAbsolutePath());
+				
+		Utils.copy(srcFile.getAbsolutePath(), "/Users/jmmore/Desktop/screen.png");
 		
 		try {
 			Thread.sleep(1000);
