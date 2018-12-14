@@ -5,12 +5,9 @@ import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TaskTwo {
 	
@@ -26,12 +23,11 @@ public class TaskTwo {
 	
 	@Test
 	public void taskTwo() throws InterruptedException{
-		WebDriver driver = TestRunner.driver;
 		Thread.sleep(1000);
+		WebDriver driver = TestRunner.driver;
 		MainPage mainPage = PageFactory.initElements(driver, MainPage.class);
 		
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-		//WebElement enemyWait = driver.findElement(By.id("enemy"));
 
 //		String[] comp = mainPage.counterText().split(" ");
 //		String[] semiCount = comp[comp.length-1].split(" ");
@@ -46,13 +42,15 @@ public class TaskTwo {
 		while(!mainPage.counterText().contains("10/10")) {	
 			System.out.println(mainPage.counterText());
 			try {
-				//WebElement element = driver.findElement(By.id("enemy"));
 				mainPage.enemy.click();
 			} catch (Exception e) {
 				
 			}
 		}
+		((JavascriptExecutor)driver).executeScript("document.getElementById('oakModal').remove()");
 		
+		((JavascriptExecutor)driver).executeScript("(document.getElementsByClassName('modal-backdrop fade in')[0]).remove()");
+
 	}
 	
 
